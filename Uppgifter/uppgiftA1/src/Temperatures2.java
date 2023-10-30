@@ -93,7 +93,7 @@ class Temperatures2
 		double minTemp = min(minT);// add code here
 		double maxTemp = max(maxT);// add code here
 		double sumTemp = sum(sumT);// add code here
-		double avgTemp = sum(sumT)/(nofWeeks*nofMeasurementsPerWeek);// add code here
+		double avgTemp = sumTemp/(nofWeeks*nofMeasurementsPerWeek);// add code here
 
         // show the least, greatest and average temperature for
         // the whole period
