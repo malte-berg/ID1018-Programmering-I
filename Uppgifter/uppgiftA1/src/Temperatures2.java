@@ -44,17 +44,17 @@ class Temperatures2
 		in = new Scanner(System.in);
 		in.useLocale(Locale.US);
 
-        // enter the number of weeks and measurements
+		// enter the number of weeks and measurements
 		out.print("number of weeks: ");
 		int nofWeeks = in.nextInt();
 		out.print("number of measurements per week: ");
 		int nofMeasurementsPerWeek = in.nextInt();
 
-        // storage space for temperature data
-        double[][] t = new double[nofWeeks + 1]
-                                 [nofMeasurementsPerWeek + 1];
+		// storage space for temperature data
+		double[][] t = new double[nofWeeks + 1]
+								 [nofMeasurementsPerWeek + 1];
 
-        // read the temperatures
+		// read the temperatures
 		for (int week = 1; week <= nofWeeks; week++)
 		{
 			out.println("temperatures - week " + week + ":");
@@ -64,7 +64,7 @@ class Temperatures2
 
 		// show the temperatures
 		out.println("the temperatures");
-        for (int week = 1; week <= nofWeeks; week++)
+		for (int week = 1; week <= nofWeeks; week++)
 			print(t[week]);
 		out.println("");
 
@@ -78,15 +78,15 @@ class Temperatures2
 			minT[week] = min(t[week]); // add code here
 			maxT[week] = max(t[week]); // add code here
 			sumT[week] = sum(t[week]); // add code here
-            avgT[week] = sumT[week]/nofMeasurementsPerWeek; // add code here
+			avgT[week] = sumT[week]/nofMeasurementsPerWeek; // add code here
 		}
 
 		// show the least, greatest and average temperatures
 		out.println("the least, greatest and average temperatures"
-		    + " - weekly");
-        print(minT);
-        print(maxT);
-        print(avgT);
+			+ " - weekly");
+		print(minT);
+		print(maxT);
+		print(avgT);
 		out.println();
 
 		// the least, greatest and average temperatures - whole period
@@ -95,15 +95,15 @@ class Temperatures2
 		double sumTemp = sum(sumT);// add code here
 		double avgTemp = sumTemp/(nofWeeks*nofMeasurementsPerWeek);// add code here
 
-        // show the least, greatest and average temperature for
-        // the whole period
+		// show the least, greatest and average temperature for
+		// the whole period
 		out.println("the least, greatest and average temperature"
-		    + " - whole period");
+			+ " - whole period");
 		out.println(minTemp + "\n" + maxTemp + "\n" + avgTemp);
-    }
+	}
 
-    // read reads the temperatures and stores them in a specified
-    // array. The temperatures are stored from index 1, inclusive.
+	// read reads the temperatures and stores them in a specified
+	// array. The temperatures are stored from index 1, inclusive.
 	public static void read (double[] temp)
 	{
 		if (temp.length < 2)
@@ -113,8 +113,8 @@ class Temperatures2
 			temp[i] = in.nextDouble();
 	}
 
-    // print displays the temperatures in a specified array.
-    // Temperatures are given from index 1, inclusive.
+	// print displays the temperatures in a specified array.
+	// Temperatures are given from index 1, inclusive.
 	public static void print (double[] temp)
 	{
 		if (temp.length < 2)
@@ -125,32 +125,32 @@ class Temperatures2
 		out.println(temp[temp.length - 1]);
 	}
 
-    // min returns the least temperature in a specified array.
-    // Temperatures are given from index 1, inclusive.
+	// min returns the least temperature in a specified array.
+	// Temperatures are given from index 1, inclusive.
 	public static double min (double[] temp)
 	{
 		// add code here
-		double min = Double.MAX_VALUE;
+		double min = Double.MAX_VALUE; // MAX_VALUE is used to include all below values as possible mins
 		for (int measurement = 1; measurement <= temp.length; measurement++) {
 			min = Math.min(temp[measurement], min);
 		}
 		return min;
 	}
 
-    // max returns the greatest temperature in a specified array.
-    // Temperatures are given from index 1, inclusive.
+	// max returns the greatest temperature in a specified array.
+	// Temperatures are given from index 1, inclusive.
 	public static double max (double[] temp)
 	{
 		// add code here
-		double max = Double.MIN_VALUE;
+		double max = Double.MIN_VALUE; // MIN_VALUE is used to include all above values as possible maxes
 		for (int measurement = 1; measurement <= temp.length; measurement++) {
 			max = Math.max(temp[measurement], max);
 		}
 		return max;
 	}
 
-    // sum returns the sum of the temperatures in a specified array.
-    // Temperatures are given from index 1, inclusive.
+	// sum returns the sum of the temperatures in a specified array.
+	// Temperatures are given from index 1, inclusive.
 	public static double sum (double[] temp)
 	{
 		// add code here
