@@ -170,10 +170,10 @@ class SynonymHandler
 	    throws IllegalArgumentException, IllegalStateException
 	{
         // add code here
-		int index = synonymLineIndex(synonymData, word); 						// Throws exception if word not found
+		int index = synonymLineIndex(synonymData, word); 							// Throws exception if word not found
 		String[] synonyms = getSynonyms(synonymData[index]);
 		if (synonyms.length == 1)
-			throw new IllegalStateException("Only one synonym for " + word); 	// Throws exception if only one synonym
+			throw new IllegalStateException("Only one synonym for " + word); 		// Throws exception if only one synonym
 		int synonymIndex = 0;
 		boolean synonymFound = false;
 		while (!synonymFound && synonymIndex < synonyms.length) {
@@ -184,14 +184,14 @@ class SynonymHandler
 		}
 		if (!synonymFound)
 			throw new IllegalArgumentException("Synonym " + synonym +
-					" not found for " + word); 									// Throws exception if synonym not found
+					" not found for " + word); 										// Throws exception if synonym not found
 		String newSynonymLine = word + " | ";
 		for (int i = 0; i < synonyms.length; i++) {
 			if (i == synonymIndex) continue;
 			newSynonymLine += synonyms[i] + ", ";
 		}
-		newSynonymLine = newSynonymLine.substring(0, newSynonymLine.length() - 2); // Remove last comma and space
-		synonymData[index] = newSynonymLine;
+		newSynonymLine = newSynonymLine.substring(0, newSynonymLine.length() - 2); 	// Remove last comma and space
+		synonymData[index] = newSynonymLine; 										// Replace old synonym line with new one
 	}
 
     // sortIgnoreCase sorts an array of strings, using
@@ -199,7 +199,7 @@ class SynonymHandler
     private static void sortIgnoreCase (String[] strings)
     {
         // add code here
-		for (int i = 0; i < strings.length - 1; i++) {
+		for (int i = 0; i < strings.length - 1; i++) {								// Selection sort
 			int minIndex = i;
 			for (int j = i + 1; j < strings.length; j++) {
 				if (strings[j].compareToIgnoreCase(strings[minIndex]) < 0)
@@ -216,13 +216,13 @@ class SynonymHandler
     private static String sortSynonymLine (String synonymLine)
     {
 	    // add code here
-		String[] synonyms = getSynonyms(synonymLine);
-		sortIgnoreCase(synonyms);
+		String[] synonyms = getSynonyms(synonymLine);								// Get synonyms in an array
+		sortIgnoreCase(synonyms);													// Sort the array
 		String result = synonymLine.substring(0, synonymLine.indexOf('|') + 2); 	// Includes word, line and space
 		for (int i = 0; i < synonyms.length; i++)
-			result += synonyms[i] + ", ";
+			result += synonyms[i] + ", ";											// Add sorted synonyms to result
 		result = result.substring(0, result.length() - 2); 							// Remove last comma and space
-		return result;
+		return result;																// Return sorted synonym line
 	}
 
     // sortSynonymData accepts synonym data, and sorts its
@@ -231,7 +231,7 @@ class SynonymHandler
 	{
         // add code here
 		for (int i = 0; i < synonymData.length; i++)
-			synonymData[i] = sortSynonymLine(synonymData[i]);
-		sortIgnoreCase(synonymData);
+			synonymData[i] = sortSynonymLine(synonymData[i]);						// Sort synonyms of each synonym line
+		sortIgnoreCase(synonymData);												// Sort synonym lines
 	}
 }
