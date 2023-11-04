@@ -99,8 +99,7 @@ class SynonymHandler
         String word) throws IllegalArgumentException
     {
 		int index = synonymLineIndex(synonymData, word);
-		if (index >= synonymData.length)
-			throw new IllegalArgumentException(word + " not found");
+
 		return synonymData[index];
 	}
 
@@ -125,26 +124,25 @@ class SynonymHandler
 	    String word) throws IllegalArgumentException
 	{
 		// add code here
-		int index = synonymLineIndex(synonymData, word);
-		if (index >= synonymData.length)
-			throw new IllegalArgumentException(word + " not found"); // Throws exception if word not found
-		String[] synData = new String[synonymData.length - 1];
+		int index = synonymLineIndex(synonymData, word);				// Throws exception if word not found
+		String[] synData = new String[synonymData.length - 1];			// Create new array with one less element
 		for (int i = 0; i < index; i++)
-			synData[i] = synonymData[i];
+			synData[i] = synonymData[i];								// Copy all elements before index
 		for (int i = index + 1; i < synonymData.length; i++)
-			synData[i-1] = synonymData[i];
-		return synData;
+			synData[i-1] = synonymData[i];								// Copy all elements after index
+		return synData;													// Return new array
 	}
 
     // getSynonyms returns synonyms in a given synonym line.
 	private static String[] getSynonyms (String synonymLine)
 	{
         // add code here
-		String[] synonyms = synonymLine.split("[|,]");
-		String[] result = new String[synonyms.length - 1];
-		for (int i = 1; i < synonyms.length; i++)
-			result[i-1] = synonyms[i].trim();
-		return result;
+		String[] synonyms = synonymLine.split("[|,]"); 			// Split on | and ,
+		String[] result = new String[synonyms.length - 1]; 				// Create new array with one less element
+		for (int i = 1; i < synonyms.length; i++) 						// Skip first element which is the word
+			result[i-1] = synonyms[i].trim(); 							// Trim spaces and add to new array at i-1
+																		// to skip word and start at index 0 of new array
+		return result;													// Return cleaned array of synonyms
 	}
 
     // addSynonym accepts synonym data, and adds a given
@@ -155,7 +153,7 @@ class SynonymHandler
 	    String word, String synonym) throws IllegalArgumentException
 	{
         // add code here
-		int index = synonymLineIndex(synonymData, word);
+		int index = synonymLineIndex(synonymData, word);				// Throws exception if word not found
 		String synonymLine = synonymData[index];
 		String newSynonymLine = synonymLine + ", " + synonym;
 		synonymData[index] = newSynonymLine;
@@ -172,10 +170,10 @@ class SynonymHandler
 	    throws IllegalArgumentException, IllegalStateException
 	{
         // add code here
-		int index = synonymLineIndex(synonymData, word); // Throws exception if word not found
+		int index = synonymLineIndex(synonymData, word); 						// Throws exception if word not found
 		String[] synonyms = getSynonyms(synonymData[index]);
 		if (synonyms.length == 1)
-			throw new IllegalStateException("Only one synonym for " + word); // Throws exception if only one synonym
+			throw new IllegalStateException("Only one synonym for " + word); 	// Throws exception if only one synonym
 		int synonymIndex = 0;
 		boolean synonymFound = false;
 		while (!synonymFound && synonymIndex < synonyms.length) {
@@ -185,7 +183,8 @@ class SynonymHandler
 				synonymIndex++;
 		}
 		if (!synonymFound)
-			throw new IllegalArgumentException("Synonym " + synonym + " not found for " + word); // Throws exception if synonym not found
+			throw new IllegalArgumentException("Synonym " + synonym +
+					" not found for " + word); 									// Throws exception if synonym not found
 		String newSynonymLine = word + " | ";
 		for (int i = 0; i < synonyms.length; i++) {
 			if (i == synonymIndex) continue;
@@ -219,10 +218,10 @@ class SynonymHandler
 	    // add code here
 		String[] synonyms = getSynonyms(synonymLine);
 		sortIgnoreCase(synonyms);
-		String result = synonymLine.substring(0, synonymLine.indexOf('|') + 2); // Includes word, line and space
+		String result = synonymLine.substring(0, synonymLine.indexOf('|') + 2); 	// Includes word, line and space
 		for (int i = 0; i < synonyms.length; i++)
 			result += synonyms[i] + ", ";
-		result = result.substring(0, result.length() - 2); // Remove last comma and space
+		result = result.substring(0, result.length() - 2); 							// Remove last comma and space
 		return result;
 	}
 
