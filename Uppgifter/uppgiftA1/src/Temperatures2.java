@@ -131,8 +131,9 @@ class Temperatures2
 	{
 		// add code here
 		double min = Double.MAX_VALUE; // MAX_VALUE is used to include all below values as possible mins
-		for (int measurement = 1; measurement <= temp.length; measurement++) {
+		for (int measurement = 1; measurement < temp.length; measurement++) {
 			min = Math.min(temp[measurement], min);
+			// ternary operator: min = (temp[measurement] < min) ? temp[measurement] : min;
 		}
 		return min;
 	}
@@ -143,7 +144,7 @@ class Temperatures2
 	{
 		// add code here
 		double max = Double.MIN_VALUE; // MIN_VALUE is used to include all above values as possible maxes
-		for (int measurement = 1; measurement <= temp.length; measurement++) {
+		for (int measurement = 1; measurement < temp.length; measurement++) {
 			max = Math.max(temp[measurement], max);
 		}
 		return max;
@@ -155,7 +156,7 @@ class Temperatures2
 	{
 		// add code here
 		double sum = 0;
-		for (int measurement = 1; measurement <= temp.length; measurement++) {
+		for (int measurement = 1; measurement < temp.length; measurement++) {
 			sum += temp[measurement];
 		}
 		return sum;
