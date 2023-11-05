@@ -202,7 +202,7 @@ class SynonymHandler
 		for (int i = 0; i < strings.length - 1; i++) {								// Selection sort
 			int minIndex = i;
 			for (int j = i + 1; j < strings.length; j++) {
-				if (strings[j].compareToIgnoreCase(strings[minIndex]) < 0)
+				if (strings[j].compareToIgnoreCase(strings[minIndex]) < 0)			// Compare ignoring case
 					minIndex = j;
 			}
 			String temp = strings[i];
