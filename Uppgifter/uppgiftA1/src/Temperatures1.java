@@ -121,7 +121,7 @@ class Temperatures1
 			maxTemp = Math.max(maxTemp, maxT[i]);
 			sumTemp += sumT[i];
 		}
-		avgTemp = sumTemp/(nofWeeks*nofMeasurementsPerWeek);
+		avgTemp = sumTemp / (nofWeeks * nofMeasurementsPerWeek);
 
         // show the least, greatest and average temperature for
         // the whole period
