@@ -60,6 +60,7 @@ public class LinkedNumberSequence implements NumberSequence
 	}
 
     // add code here
+	@Override
 	public int length() {
 		int len = 0;
 		Node n = first;
@@ -94,7 +95,7 @@ public class LinkedNumberSequence implements NumberSequence
 
 	@Override
 	public double numberAt(int position) throws IndexOutOfBoundsException {
-		if (position < 0)
+		if (position < 0 || position >= this.length())
 			throw new IndexOutOfBoundsException("Index not available");
 		Node n = first;
 		for(int i = 0; i < position-1; i++) {
@@ -172,6 +173,9 @@ public class LinkedNumberSequence implements NumberSequence
 
 	@Override
 	public void insert(int position, double number) throws IndexOutOfBoundsException {
+		if (position < 0 || position >= this.length()) {
+			throw new IndexOutOfBoundsException("Index not available.");
+		}
 		Node node = new Node(number);
 		if (position == 0) {
 			node.next = first;
@@ -188,7 +192,13 @@ public class LinkedNumberSequence implements NumberSequence
 
 	@Override
 	public void removeAt(int position) throws IndexOutOfBoundsException, IllegalStateException {
+		if (position < 0 || position >= this.length()) {
+			throw new IndexOutOfBoundsException("Index not available.");
+		}
 		Node n = first;
+		if(n.next.next == null) {
+			throw new IllegalStateException("Only two numbers in sequence.");
+		}
 		for (int i = 1; i < position; i++)
 			n = n.next;
 		n.next = n.next.next;
