@@ -18,9 +18,12 @@ class NumberSequenceTest
 {
     public static void main (String[] args)
     {
-		double[] realNumbers =
-		    {8.0, 2.0, 16.0, 5.0, 1.0, 12.0, 4.0};
+        // CHOOSE A REAL NUMBER LIST BELOW
+		//double[] realNumbers = {8.0, 2.0, 16.0, 5.0, 1.0, 12.0, 4.0};
+        //double[] realNumbers = {1.0, 2.0, 4.0, 5.0, 8.0, 12.0, 16.0};
+        //double[] realNumbers = {16.0, 12.0, 8.0, 5.0, 4.0, 2.0, 1.0};
         NumberSequence sequence = null;
+        // CHOOSE A SEQUENCE TYPE
         //sequence = new ArrayNumberSequence(realNumbers);
         //sequence = new LinkedNumberSequence(realNumbers);
         out.println("the sequence:");
@@ -43,7 +46,6 @@ class NumberSequenceTest
         out.println("add 32.0:");
         sequence.add(32.0);
         out.println(sequence);
-
         out.println("insert 0.0 at position 7:");
         sequence.insert(7, 0.0);
         out.println(sequence);
